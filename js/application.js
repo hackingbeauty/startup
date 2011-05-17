@@ -2,6 +2,42 @@
 
 	if(!window.JS) {window.JS = {}}	//Create Namespace
 	
+	JS.printSetTimeout = function(){
+	  for(var i = 0; i < 3; i++){
+	    var interval = i;
+	    console.log(interval);
+	    setTimeout(function(interval){
+	      alert(interval);
+	    },1000)
+	  }
+	}
+	
+	JS.reverseList = function(list){
+	  var iteration = Math.floor(list.length/2)
+	  var count = 0;
+	  for(var i = 0;i<=iteration;i++){
+	    count++;
+	    var firstElem = list[i];
+	    var lastElem = list[list.length-count];
+	    list[i] = lastElem;
+	    list[list.length-count] = firstElem;
+	  }
+	  return list;
+	}
+
+	JS.recursivelyReverseList = function(list,start,end){
+	  if (start > end) {
+	    console.log(list);
+      return list;
+	  } else {  
+      var firstElem = list[start];
+      var lastElem = list[end];
+      list[start] = lastElem;
+      list[end] = firstElem;
+	    JS.recursivelyReverseList(list,start+1,end-1); 
+	  }
+	}
+	
 	JS.Carousel = {
 		
 		this: JS.Carousel,
@@ -53,5 +89,10 @@
 })();
 		
 $(document).ready(function(){
-	JS.Carousel.animate();
+	//JS.Carousel.animate();
+  var arr = [1,2,3,4,5,6,7,8,9,10]
+  // JS.reverseList(arr);
+  //JS.printSetTimeout();
+  // var newArr = JS.recursivelyReverseList(arr);
+  console.log("the new arr is " + JS.recursivelyReverseList(arr,0,10));
 });
